@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cappucino Online</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Cappucino Online Premium</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -16,111 +19,511 @@
     font-family:'Poppins',sans-serif;
 }
 
+
 body{
-    background:linear-gradient(135deg,#3a1c0f,#6f4e37,#b88746);
+
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    overflow:hidden;
+    background:#120803;
+
 }
+
+
+/* VIDEO BACKGROUND */
+
+.bg-video{
+
+    position:fixed;
+
+    right:0;
+    bottom:0;
+
+    min-width:100%;
+    min-height:100%;
+
+    object-fit:cover;
+
+    z-index:-2;
+
+    filter:brightness(35%);
+
+}
+
+
+
+/* OVERLAY */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:100%;
+    height:100%;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    rgba(20,8,3,.8),
+    rgba(139,90,43,.5)
+    );
+
+    z-index:-1;
+
+}
+
+
+
+/* CARD */
 
 .container{
+
     width:90%;
-    max-width:420px;
-    background:rgba(255,255,255,.1);
-    backdrop-filter:blur(15px);
-    border-radius:20px;
+    max-width:430px;
+
     padding:35px;
+
+    background:
+
+    rgba(255,255,255,.12);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:30px;
+
+    border:
+
+    1px solid rgba(255,255,255,.25);
+
     text-align:center;
-    color:#fff;
-    box-shadow:0 0 25px rgba(0,0,0,.4);
+
+    color:white;
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.6);
+
+    animation:fade 1s ease;
+
 }
+
+
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+
+
+/* LOGO */
 
 .logo{
-    font-size:45px;
-    margin-bottom:10px;
+
+font-size:75px;
+
+animation:coffee 2s infinite;
+
 }
+
+
+
+@keyframes coffee{
+
+50%{
+
+transform:scale(1.08);
+
+}
+
+}
+
+
+
+/* TITLE */
+
 
 h1{
-    color:#FFD700;
-    margin-bottom:10px;
+
+font-size:32px;
+
+font-weight:800;
+
+color:#FFD700;
+
+text-shadow:
+
+0 0 20px #FFD700;
+
+margin:10px 0;
+
 }
+
+
+
+/* DESCRIPTION */
+
 
 .desc{
-    color:#eee;
-    margin-bottom:25px;
+
+font-size:15px;
+
+color:#eee;
+
+margin-bottom:20px;
+
 }
+
+
+
+/* STATUS */
+
+
+.status{
+
+display:flex;
+
+justify-content:center;
+
+gap:10px;
+
+margin-bottom:20px;
+
+}
+
+
+.badge{
+
+padding:8px 15px;
+
+border-radius:30px;
+
+background:
+
+rgba(255,255,255,.15);
+
+font-size:12px;
+
+}
+
+
+
+/* BUTTON */
+
 
 .btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    width:100%;
-    padding:15px;
-    margin:12px 0;
-    border-radius:12px;
-    color:white;
-    text-decoration:none;
-    font-size:18px;
-    font-weight:bold;
-    transition:.3s;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:8px;
+
+width:100%;
+
+padding:16px;
+
+margin:14px 0;
+
+border-radius:18px;
+
+text-decoration:none;
+
+color:white;
+
+font-size:17px;
+
+font-weight:bold;
+
+transition:.3s;
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.4);
+
 }
+
+
 
 .btn:hover{
-    transform:scale(1.03);
+
+transform:translateY(-5px) scale(1.03);
+
 }
+
+
+
+/* WHATSAPP */
+
 
 .wa{
-    background:#25D366;
+
+background:
+
+linear-gradient(
+45deg,
+#00a884,
+#25D366
+);
+
 }
+
+
+
+/* TELEGRAM */
+
 
 .tg{
-    background:#0088cc;
+
+background:
+
+linear-gradient(
+45deg,
+#0077b5,
+#00bfff
+);
+
 }
 
-.footer{
-    margin-top:20px;
-    font-size:13px;
-    color:#ddd;
+
+
+/* FLOATING WA */
+
+
+.float-wa{
+
+position:fixed;
+
+right:25px;
+
+bottom:25px;
+
+width:60px;
+
+height:60px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:#25D366;
+
+font-size:30px;
+
+text-decoration:none;
+
+color:white;
+
+box-shadow:
+
+0 0 25px #25D366;
+
+animation:ring 1.5s infinite;
+
 }
+
+
+
+@keyframes ring{
+
+50%{
+
+transform:scale(1.15);
+
+}
+
+}
+
+
+
+/* FOOTER */
+
+
+.footer{
+
+margin-top:25px;
+
+font-size:12px;
+
+color:#ddd;
+
+}
+
+
 </style>
 
 </head>
+
+
 <body>
+
+
+<!-- VIDEO BACKGROUND -->
+
+<video autoplay muted loop playsinline class="bg-video">
+
+<source src="video.mp4" type="video/mp4">
+
+</video>
+
+
 
 <div class="container">
 
-<div class="logo">☕</div>
 
-<h1>Cappucino Online</h1>
+<div class="logo">
+
+☕✨
+
+</div>
+
+
+<h1>
+
+Cappucino Online
+
+</h1>
+
 
 <p class="desc">
-Selamat Datang di <b>Cappucino Online</b><br>
-Customer Service Online 24 Jam
+
+Customer Service Premium<br>
+
+Online 24 Jam
+
 </p>
 
-<a class="btn wa" href="https://wa.me/60109518075" target="_blank">
-📱 WhatsApp Main<br>
+
+
+<div class="status">
+
+<div class="badge">
+
+⚡ Fast Response
+
+</div>
+
+
+<div class="badge">
+
+✔ Trusted
+
+</div>
+
+
+<div class="badge">
+
+🕒 24 Hours
+
+</div>
+
+</div>
+
+
+
+<a class="btn wa"
+
+href="https://wa.me/60109518075"
+
+target="_blank">
+
+📱 WhatsApp Main
+
+<br>
+
 +60 10-951 8075
+
 </a>
 
-<a class="btn wa" href="https://wa.me/60176191366" target="_blank">
-📱 WhatsApp Backup<br>
+
+
+<a class="btn wa"
+
+href="https://wa.me/60176191366"
+
+target="_blank">
+
+📱 WhatsApp Backup
+
+<br>
+
 +60 17-619 1366
+
 </a>
 
-<a class="btn tg" href="https://t.me/Cappuccino_Online" target="_blank">
-✈️ Telegram<br>
+
+
+<a class="btn tg"
+
+href="https://t.me/Cappuccino_Online"
+
+target="_blank">
+
+✈️ Telegram
+
+<br>
+
 @Cappuccino_Online
+
 </a>
+
+
+
 
 <div class="footer">
-© 2026 Cappucino Online<br>
-Fast Response • Trusted • 24 Hours
-</div>
+
+© 2026 Cappucino Online
+
+<br>
+
+Premium Service • Secure • 24 Hours
 
 </div>
+
+
+
+</div>
+
+
+
+<!-- FLOAT BUTTON -->
+
+<a class="float-wa"
+
+href="https://wa.me/60109518075"
+
+target="_blank">
+
+☏
+
+</a>
+
+
 
 </body>
+
 </html>

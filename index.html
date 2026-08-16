@@ -8,428 +8,1249 @@
 
 <title>Cappucino Online Premium</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <style>
 
+/* ==============================
+   RESET
+============================== */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
 
 body{
 
-background:#120803;
-overflow:hidden;
+    font-family:'Poppins',sans-serif;
 
+    background:#090503;
+
+    color:white;
+
+    overflow-x:hidden;
 }
 
 
-/* LOADING */
-
-.loader{
-
-position:fixed;
-top:0;
-left:0;
-
-width:100%;
-height:100vh;
-
-display:flex;
-flex-direction:column;
-
-justify-content:center;
-align-items:center;
-
-background:#120803;
-
-z-index:9999;
-
-animation:hideLoader .8s ease 3s forwards;
-
-}
-
-
-.loader img{
-
-width:150px;
-height:150px;
-
-object-fit:contain;
-
-animation:pulse 2s infinite;
-
-}
-
-
-.loader h2{
-
-margin-top:20px;
-color:#FFD700;
-font-size:30px;
-
-}
-
-
-.loader p{
-
-color:white;
-margin-top:10px;
-
-}
-
-
-@keyframes pulse{
-
-50%{
-transform:scale(1.08);
-}
-
-}
-
-
-@keyframes hideLoader{
-
-to{
-opacity:0;
-visibility:hidden;
-}
-
-}
-
-
-
-/* VIDEO BACKGROUND */
-
+/* ==============================
+   VIDEO BACKGROUND
+============================== */
 
 .bg-video{
 
-position:fixed;
+    position:fixed;
 
-width:100%;
-height:100%;
+    top:0;
+    left:0;
 
-object-fit:cover;
+    width:100%;
+    height:100%;
 
-z-index:-2;
+    object-fit:cover;
 
-filter:brightness(.35);
+    z-index:-5;
 
+    filter:
+        brightness(.28)
+        contrast(1.15)
+        saturate(1.15);
+
+    transform:scale(1.03);
 }
 
 
+/* ==============================
+   CINEMATIC OVERLAY
+============================== */
 
-body:after{
+body::before{
 
-content:"";
+    content:"";
 
-position:fixed;
+    position:fixed;
 
-width:100%;
-height:100%;
+    inset:0;
 
-background:
-linear-gradient(
-135deg,
-rgba(20,8,3,.75),
-rgba(111,78,55,.45)
-);
+    z-index:-4;
 
-z-index:-1;
+    background:
 
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(255,215,0,.13),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(255,140,0,.10),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(8,3,1,.88),
+            rgba(42,20,8,.65),
+            rgba(4,2,1,.90)
+        );
+
+    pointer-events:none;
 }
 
 
-/* WRAPPER */
+/* ==============================
+   VIGNETTE
+============================== */
 
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-3;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 35%,
+            rgba(0,0,0,.72) 100%
+        );
+}
+
+
+/* ==============================
+   PARTICLES
+============================== */
+
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-2;
+}
+
+.particles span{
+
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    background:#FFD700;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 8px #FFD700,
+        0 0 16px rgba(255,215,0,.7);
+
+    opacity:.5;
+
+    animation:
+        particleFloat
+        linear
+        infinite;
+}
+
+.particles span:nth-child(1){
+    left:8%;
+    top:80%;
+    animation-duration:12s;
+}
+
+.particles span:nth-child(2){
+    left:18%;
+    top:95%;
+    animation-duration:15s;
+}
+
+.particles span:nth-child(3){
+    left:30%;
+    top:70%;
+    animation-duration:11s;
+}
+
+.particles span:nth-child(4){
+    left:43%;
+    top:90%;
+    animation-duration:17s;
+}
+
+.particles span:nth-child(5){
+    left:55%;
+    top:80%;
+    animation-duration:14s;
+}
+
+.particles span:nth-child(6){
+    left:68%;
+    top:95%;
+    animation-duration:13s;
+}
+
+.particles span:nth-child(7){
+    left:78%;
+    top:75%;
+    animation-duration:16s;
+}
+
+.particles span:nth-child(8){
+    left:90%;
+    top:90%;
+    animation-duration:12s;
+}
+
+@keyframes particleFloat{
+
+    from{
+        transform:translateY(30px);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.6;
+    }
+
+    80%{
+        opacity:.4;
+    }
+
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+
+/* ==============================
+   PREMIUM LOADER
+============================== */
+
+.loader{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #2a1608 0%,
+            #100703 45%,
+            #050201 100%
+        );
+
+    z-index:99999;
+
+    animation:
+        loaderOut
+        1s
+        ease
+        3.2s
+        forwards;
+}
+
+.loader::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,215,0,.15),
+            transparent 65%
+        );
+
+    filter:blur(10px);
+
+    animation:loaderGlow 2s infinite alternate;
+}
+
+@keyframes loaderGlow{
+
+    from{
+        transform:scale(.85);
+        opacity:.5;
+    }
+
+    to{
+        transform:scale(1.15);
+        opacity:1;
+    }
+}
+
+.loader-logo{
+
+    position:relative;
+
+    width:145px;
+    height:145px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255,215,0,.8))
+        drop-shadow(0 0 35px rgba(255,160,0,.45));
+
+    animation:
+        loaderLogo 2s
+        ease-in-out
+        infinite;
+}
+
+@keyframes loaderLogo{
+
+    0%{
+        transform:scale(.96);
+    }
+
+    50%{
+        transform:scale(1.06);
+    }
+
+    100%{
+        transform:scale(.96);
+    }
+}
+
+.loader-title{
+
+    position:relative;
+
+    margin-top:22px;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    color:#FFD700;
+
+    text-shadow:
+        0 0 12px rgba(255,215,0,.8),
+        0 0 30px rgba(255,160,0,.35);
+}
+
+.loader-subtitle{
+
+    position:relative;
+
+    margin-top:6px;
+
+    color:rgba(255,255,255,.72);
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.loader-bar{
+
+    position:relative;
+
+    margin-top:28px;
+
+    width:190px;
+
+    height:4px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.12);
+}
+
+.loader-bar::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:40%;
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b8860b,
+            #FFD700,
+            #fff4a3
+        );
+
+    box-shadow:
+        0 0 12px #FFD700;
+
+    animation:
+        loadingBar
+        2.2s
+        ease-in-out
+        infinite;
+}
+
+@keyframes loadingBar{
+
+    0%{
+        left:-40%;
+    }
+
+    100%{
+        left:100%;
+    }
+}
+
+@keyframes loaderOut{
+
+    0%{
+        opacity:1;
+        visibility:visible;
+    }
+
+    80%{
+        opacity:0;
+    }
+
+    100%{
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none;
+    }
+}
+
+
+/* ==============================
+   MAIN WRAPPER
+============================== */
 
 .wrapper{
 
-width:100%;
-min-height:100vh;
+    position:relative;
 
-display:flex;
+    min-height:100vh;
 
-justify-content:center;
-align-items:center;
+    width:100%;
 
-padding:25px;
+    display:flex;
 
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px 18px;
+
+    z-index:2;
 }
 
 
-
-/* CARD */
-
+/* ==============================
+   PREMIUM CARD
+============================== */
 
 .container{
 
-width:100%;
-max-width:430px;
+    position:relative;
 
-padding:35px;
+    width:100%;
 
-border-radius:28px;
+    max-width:460px;
 
-background:
-rgba(255,255,255,.10);
+    padding:42px 34px 30px;
 
-backdrop-filter:blur(18px);
+    border-radius:32px;
 
-border:
-1px solid rgba(255,255,255,.15);
+    text-align:center;
 
+    overflow:hidden;
 
-box-shadow:
-0 20px 60px rgba(0,0,0,.5);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.055)
+        );
 
+    border:
+        1px solid rgba(255,255,255,.16);
 
-color:white;
+    box-shadow:
 
-text-align:center;
+        0 30px 90px rgba(0,0,0,.65),
 
-animation:fadeUp .8s ease;
+        inset 0 1px 0 rgba(255,255,255,.16),
 
+        0 0 0 1px rgba(255,215,0,.035);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(130%);
+
+    animation:
+        cardAppear
+        1s
+        cubic-bezier(.16,1,.3,1)
+        3.35s
+        both;
 }
 
 
+/* CARD TOP LIGHT */
 
-@keyframes fadeUp{
+.container::before{
 
-from{
+    content:"";
 
-opacity:0;
-transform:translateY(30px);
+    position:absolute;
 
+    top:-150px;
+    left:50%;
+
+    width:300px;
+    height:300px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,215,0,.15),
+            transparent 68%
+        );
+
+    pointer-events:none;
 }
 
-to{
 
-opacity:1;
-transform:translateY(0);
+/* CARD SHINE */
 
+.container::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:60%;
+    height:100%;
+
+    transform:skewX(-20deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.055),
+            transparent
+        );
+
+    animation:
+        cardShine
+        7s
+        ease-in-out
+        infinite;
 }
 
+@keyframes cardShine{
+
+    0%{
+        left:-120%;
+    }
+
+    25%,
+    100%{
+        left:150%;
+    }
+}
+
+@keyframes cardAppear{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(45px)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
 
+/* ==============================
+   LOGO
+============================== */
+
+.logo-wrapper{
+
+    position:relative;
+
+    display:inline-flex;
+
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:5px;
+}
+
+.logo-wrapper::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:145px;
+    height:145px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,215,0,.18),
+            transparent 68%
+        );
+
+    filter:blur(5px);
+
+    animation:
+        logoGlow
+        3s
+        ease-in-out
+        infinite;
+}
+
+@keyframes logoGlow{
+
+    50%{
+        transform:scale(1.12);
+        opacity:.6;
+    }
+}
 
 .main-logo{
 
-width:120px;
-height:120px;
+    position:relative;
 
-object-fit:contain;
+    width:125px;
+    height:125px;
 
-filter:
-drop-shadow(0 0 20px gold);
+    object-fit:contain;
 
-animation:logoFloat 3s infinite;
+    filter:
+        drop-shadow(0 0 8px rgba(255,215,0,.9))
+        drop-shadow(0 0 25px rgba(255,175,0,.55));
 
+    animation:
+        logoFloat
+        4s
+        ease-in-out
+        infinite;
 }
-
-
 
 @keyframes logoFloat{
 
-50%{
+    0%,
+    100%{
+        transform:translateY(0);
+    }
 
-transform:translateY(-8px);
-
+    50%{
+        transform:translateY(-9px);
+    }
 }
 
-}
 
-
+/* ==============================
+   TITLE
+============================== */
 
 h1{
 
-margin-top:20px;
+    position:relative;
 
-font-size:34px;
+    margin-top:14px;
 
-font-weight:800;
+    font-size:34px;
 
-color:#FFD700;
+    line-height:1.15;
 
-text-shadow:
-0 0 15px gold;
+    font-weight:800;
 
+    letter-spacing:.3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff0a3,
+            #FFD700,
+            #fff5bd,
+            #d99b00
+        );
+
+    background-size:200% auto;
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:
+        goldText
+        5s
+        linear
+        infinite;
+
+    filter:
+        drop-shadow(0 0 14px rgba(255,215,0,.35));
+}
+
+@keyframes goldText{
+
+    to{
+        background-position:200% center;
+    }
 }
 
 
+/* ==============================
+   DESCRIPTION
+============================== */
 
 .desc{
 
-margin-top:10px;
+    margin-top:12px;
 
-line-height:1.6;
+    color:rgba(255,255,255,.78);
 
-color:#eee;
+    font-size:14px;
 
+    line-height:1.8;
+
+    letter-spacing:.3px;
 }
 
 
+/* ==============================
+   STATUS BADGES
+============================== */
 
 .status{
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-gap:10px;
+    flex-wrap:wrap;
 
-margin:25px 0;
+    gap:8px;
 
-flex-wrap:wrap;
-
+    margin:25px 0 22px;
 }
-
-
 
 .badge{
 
-padding:8px 16px;
+    padding:8px 13px;
 
-border-radius:50px;
+    border-radius:50px;
 
-background:
-rgba(255,255,255,.12);
+    font-size:11px;
 
-font-size:12px;
+    font-weight:500;
 
+    color:rgba(255,255,255,.9);
+
+    background:
+        rgba(255,255,255,.065);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    backdrop-filter:blur(8px);
+
+    transition:.3s;
+}
+
+.badge:hover{
+
+    transform:translateY(-2px);
+
+    border-color:
+        rgba(255,215,0,.35);
+
+    background:
+        rgba(255,215,0,.08);
 }
 
 
+/* ==============================
+   BUTTONS
+============================== */
 
 .btn{
 
-display:flex;
+    position:relative;
 
-justify-content:center;
+    display:flex;
 
-align-items:center;
+    justify-content:center;
 
-width:100%;
+    align-items:center;
 
-padding:16px;
+    flex-direction:column;
 
-margin:14px 0;
+    width:100%;
 
-border-radius:16px;
+    min-height:70px;
 
-font-size:17px;
+    padding:13px 18px;
 
-font-weight:700;
+    margin:12px 0;
 
-text-decoration:none;
+    border-radius:18px;
 
-color:white;
+    text-decoration:none;
 
-transition:.3s;
+    color:white;
 
+    overflow:hidden;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:.2px;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.25),
+
+        inset 0 1px 0
+        rgba(255,255,255,.22);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        filter .3s ease;
 }
 
 
+/* BUTTON SHINE */
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:65%;
+    height:100%;
+
+    transform:skewX(-20deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.25),
+            transparent
+        );
+
+    transition:.6s;
+}
+
+.btn:hover::before{
+    left:150%;
+}
 
 .btn:hover{
 
-transform:translateY(-4px);
+    transform:
+        translateY(-4px)
+        scale(1.01);
 
+    filter:brightness(1.1);
+
+    box-shadow:
+        0 18px 35px rgba(0,0,0,.4),
+
+        0 0 22px rgba(255,255,255,.08),
+
+        inset 0 1px 0
+        rgba(255,255,255,.25);
+}
+
+.btn:active{
+
+    transform:
+        translateY(-1px)
+        scale(.99);
 }
 
 
+/* WHATSAPP */
 
 .wa{
 
-background:
-linear-gradient(45deg,#0ea95d,#25D366);
+    background:
+        linear-gradient(
+            135deg,
+            #087f49,
+            #12b85c,
+            #25D366
+        );
 
+    box-shadow:
+        0 10px 28px rgba(37,211,102,.18);
 }
 
 
+/* TELEGRAM */
 
 .tg{
 
-background:
-linear-gradient(45deg,#0077b5,#00bfff);
+    background:
+        linear-gradient(
+            135deg,
+            #00689d,
+            #008fd1,
+            #00bfff
+        );
 
+    box-shadow:
+        0 10px 28px rgba(0,191,255,.18);
 }
 
 
+/* BUTTON LABEL */
+
+.btn-main{
+
+    font-size:15px;
+
+    font-weight:700;
+}
+
+.btn-number{
+
+    margin-top:2px;
+
+    font-size:12px;
+
+    font-weight:400;
+
+    opacity:.85;
+}
+
+
+/* ==============================
+   FOOTER
+============================== */
 
 .footer{
 
-margin-top:25px;
+    position:relative;
 
-font-size:12px;
+    margin-top:25px;
 
-color:#ddd;
+    padding-top:18px;
 
+    border-top:
+        1px solid rgba(255,255,255,.08);
+
+    font-size:11px;
+
+    line-height:1.8;
+
+    color:rgba(255,255,255,.48);
+
+    letter-spacing:.2px;
+}
+
+.footer strong{
+
+    color:#FFD700;
+
+    font-weight:600;
 }
 
 
-
-/* FLOAT BUTTON */
-
+/* ==============================
+   FLOATING WHATSAPP
+============================== */
 
 .float-wa{
 
-position:fixed;
+    position:fixed;
 
-right:20px;
+    right:22px;
+    bottom:22px;
 
-bottom:20px;
+    width:64px;
+    height:64px;
 
+    display:flex;
 
-width:60px;
-height:60px;
+    justify-content:center;
+    align-items:center;
 
+    border-radius:50%;
 
-border-radius:50%;
+    text-decoration:none;
 
+    color:white;
 
-display:flex;
+    font-size:28px;
 
-justify-content:center;
+    background:
+        linear-gradient(
+            145deg,
+            #25D366,
+            #0b9e4b
+        );
 
-align-items:center;
+    border:
+        2px solid rgba(255,255,255,.25);
 
+    box-shadow:
+        0 8px 25px rgba(37,211,102,.35),
+        0 0 35px rgba(37,211,102,.2);
 
-background:#25D366;
+    z-index:100;
 
+    animation:
+        floatPulse
+        2.5s
+        ease-in-out
+        infinite;
 
-color:white;
-
-
-font-size:28px;
-
-
-box-shadow:
-0 0 20px #25D366;
-
-
-animation:floatPulse 2s infinite;
-
+    transition:.3s;
 }
 
+.float-wa::before{
 
+    content:"";
+
+    position:absolute;
+
+    inset:-6px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(37,211,102,.35);
+
+    animation:
+        ringPulse
+        2.5s
+        infinite;
+}
 
 @keyframes floatPulse{
 
-50%{
+    0%,
+    100%{
+        transform:translateY(0);
+    }
 
-transform:scale(1.1);
-
+    50%{
+        transform:translateY(-7px);
+    }
 }
 
+@keyframes ringPulse{
+
+    0%{
+        transform:scale(.9);
+        opacity:.8;
+    }
+
+    100%{
+        transform:scale(1.35);
+        opacity:0;
+    }
 }
 
+.float-wa:hover{
+
+    transform:scale(1.12);
+
+    box-shadow:
+        0 10px 35px rgba(37,211,102,.55),
+        0 0 45px rgba(37,211,102,.3);
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media(max-width:500px){
+
+    .wrapper{
+        padding:20px 14px;
+    }
+
+    .container{
+
+        max-width:100%;
+
+        padding:
+            32px 20px 25px;
+
+        border-radius:27px;
+    }
+
+    .main-logo{
+
+        width:110px;
+        height:110px;
+    }
+
+    .logo-wrapper::before{
+
+        width:130px;
+        height:130px;
+    }
+
+    h1{
+
+        font-size:29px;
+    }
+
+    .desc{
+
+        font-size:13px;
+    }
+
+    .badge{
+
+        font-size:10px;
+
+        padding:
+            7px 11px;
+    }
+
+    .btn{
+
+        min-height:66px;
+
+        border-radius:16px;
+    }
+
+    .float-wa{
+
+        width:58px;
+        height:58px;
+
+        right:16px;
+        bottom:16px;
+
+        font-size:25px;
+    }
+}
+
+
+/* ==============================
+   SMALL MOBILE
+============================== */
+
+@media(max-width:360px){
+
+    .container{
+
+        padding:
+            28px 16px 22px;
+    }
+
+    .main-logo{
+
+        width:95px;
+        height:95px;
+    }
+
+    h1{
+
+        font-size:25px;
+    }
+
+    .status{
+
+        gap:5px;
+    }
+
+    .badge{
+
+        font-size:9px;
+    }
+}
 
 </style>
 
@@ -439,123 +1260,218 @@ transform:scale(1.1);
 <body>
 
 
+<!-- ==============================
+     LOADER
+============================== -->
+
 <div class="loader">
 
-<img src="logo.png">
+    <img
+        src="logo.png"
+        class="loader-logo"
+        alt="Cappucino Online">
 
-<h2>Cappucino Online</h2>
+    <div class="loader-title">
+        Cappucino Online
+    </div>
 
-<p>Loading Premium Service...</p>
+    <div class="loader-subtitle">
+        Premium Customer Service
+    </div>
+
+    <div class="loader-bar"></div>
 
 </div>
 
 
+<!-- ==============================
+     BACKGROUND VIDEO
+============================== -->
 
-<video autoplay muted loop playsinline class="bg-video">
+<video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    class="bg-video">
 
-<source src="video.mp4" type="video/mp4">
+    <source
+        src="video.mp4"
+        type="video/mp4">
 
 </video>
 
 
+<!-- ==============================
+     PARTICLES
+============================== -->
+
+<div class="particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+
+<!-- ==============================
+     MAIN
+============================== -->
 
 <div class="wrapper">
 
-
-<div class="container">
-
-
-<img src="logo.png" class="main-logo">
+    <div class="container">
 
 
-<h1>
-Cappucino Online
-</h1>
+        <!-- LOGO -->
+
+        <div class="logo-wrapper">
+
+            <img
+                src="logo.png"
+                class="main-logo"
+                alt="Cappucino Online Logo">
+
+        </div>
 
 
-<p class="desc">
+        <!-- TITLE -->
 
-Customer Service Premium<br>
-
-Online 24 Jam
-
-</p>
+        <h1>
+            Cappucino Online
+        </h1>
 
 
+        <!-- DESCRIPTION -->
 
-<div class="status">
+        <p class="desc">
 
-<div class="badge">
-⚡ Fast Response
+            Customer Service Premium<br>
+
+            <span>
+                Online 24 Jam • Fast Response
+            </span>
+
+        </p>
+
+
+        <!-- STATUS -->
+
+        <div class="status">
+
+            <div class="badge">
+                ⚡ Fast Response
+            </div>
+
+            <div class="badge">
+                ✓ Trusted
+            </div>
+
+            <div class="badge">
+                ◉ 24 Hours
+            </div>
+
+        </div>
+
+
+        <!-- WHATSAPP MAIN -->
+
+        <a
+            class="btn wa"
+            href="https://wa.me/60109518075"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <span class="btn-main">
+                📱 WhatsApp Main
+            </span>
+
+            <span class="btn-number">
+                +60 10-951 8075
+            </span>
+
+        </a>
+
+
+        <!-- WHATSAPP BACKUP -->
+
+        <a
+            class="btn wa"
+            href="https://wa.me/60176191366"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <span class="btn-main">
+                📱 WhatsApp Backup
+            </span>
+
+            <span class="btn-number">
+                +60 17-619 1366
+            </span>
+
+        </a>
+
+
+        <!-- TELEGRAM -->
+
+        <a
+            class="btn tg"
+            href="https://t.me/Cappuccino_Online"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <span class="btn-main">
+                ✈️ Telegram
+            </span>
+
+            <span class="btn-number">
+                @Cappuccino_Online
+            </span>
+
+        </a>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            © 2026
+            <strong>Cappucino Online</strong>
+
+            <br>
+
+            Premium Service
+            • Secure
+            • Online 24 Hours
+
+        </div>
+
+
+    </div>
+
 </div>
 
-<div class="badge">
-✔ Trusted
-</div>
 
-<div class="badge">
-🕒 24 Hours
-</div>
+<!-- ==============================
+     FLOAT WHATSAPP
+============================== -->
 
-</div>
+<a
+    class="float-wa"
+    href="https://wa.me/60109518075"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp Cappucino Online">
 
-
-
-<a class="btn wa"
-href="https://wa.me/60109518075"
-target="_blank">
-
-📱 WhatsApp Main<br>
-+60 10-951 8075
-
-</a>
-
-
-
-<a class="btn wa"
-href="https://wa.me/60176191366"
-target="_blank">
-
-📱 WhatsApp Backup<br>
-+60 17-619 1366
-
-</a>
-
-
-
-<a class="btn tg"
-href="https://t.me/Cappuccino_Online"
-target="_blank">
-
-✈️ Telegram<br>
-@Cappuccino_Online
-
-</a>
-
-
-
-<div class="footer">
-
-© 2026 Cappucino Online<br>
-
-Premium Service • Secure • 24 Hours
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-<a class="float-wa"
-
-href="https://wa.me/60109518075"
-
-target="_blank">
-
-💬
+    💬
 
 </a>
 
